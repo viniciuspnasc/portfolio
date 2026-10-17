@@ -1,0 +1,519 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Vinicius Pinheiro · Desenvolvedor web</title>
+<meta name="description" content="Portfólio de Vinicius Pinheiro, desenvolvedor web em formação em São Paulo. Projetos com JavaScript, APIs e MySQL, stack, jornada e contato.">
+<meta name="author" content="Vinicius Pinheiro">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#eef0f4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0e1016" media="(prefers-color-scheme: dark)">
+
+<!-- Ícones -->
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+<!-- Prévia ao compartilhar o link (WhatsApp, LinkedIn etc.)
+     Depois de publicar, troque /og-image.png e og:url pelo endereço completo do site,
+     ex.: https://vinicius.pages.dev/og-image.png -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="vinicius.dev · Vinicius Pinheiro">
+<meta property="og:description" content="Portfólio de Vinicius Pinheiro, desenvolvedor web em formação em São Paulo. Projetos com JavaScript, APIs e MySQL, stack, jornada e contato.">
+<meta property="og:image" content="/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="vinicius.dev, portfólio de Vinicius Pinheiro">
+<meta property="og:url" content="/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="vinicius.dev · Vinicius Pinheiro">
+<meta name="twitter:description" content="Portfólio de Vinicius Pinheiro, desenvolvedor web em formação em São Paulo. Projetos com JavaScript, APIs e MySQL, stack, jornada e contato.">
+<meta name="twitter:image" content="/og-image.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: mapa de um dev de rua. Hero com coordenadas e código vivo, projetos como "pontos no mapa" com previews desenhados em CSS, jornada como rota vertical. */
+:root{
+  --bg:#eef0f4; --surface:#ffffff; --ink:#12141c; --muted:#5a6072; --line:#d5d9e3;
+  --accent:#3b3bf5; --accent-soft:#e3e3ff; --ok:#13865a;
+  --display:"Syne","Arial Black",system-ui,sans-serif;
+  --body:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  --r:14px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0e1016; --surface:#161922; --ink:#e8eaf1; --muted:#9298ab; --line:#272b38;
+  --accent:#8b8bff; --accent-soft:#22234a; --ok:#4fd39a; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0e1016; --surface:#161922; --ink:#e8eaf1; --muted:#9298ab; --line:#272b38;
+  --accent:#8b8bff; --accent-soft:#22234a; --ok:#4fd39a; color-scheme:dark}
+
+*{box-sizing:border-box}
+img{max-width:100%}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;margin:0;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.mono{font-family:var(--mono)}
+.label{font-family:var(--mono);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.02}
+h2{font-size:clamp(2rem,5vw,3.4rem);letter-spacing:-.02em}
+h3{font-size:1.35rem;letter-spacing:-.01em}
+p{margin:0}
+
+/* NAV */
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px}
+.logo{font-family:var(--display);font-weight:800;text-decoration:none;font-size:1.05rem}
+.logo span{color:var(--accent)}
+.links{display:flex;gap:22px;font-size:.92rem}
+.links a{text-decoration:none;color:var(--muted);position:relative}
+.links a::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:2px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.links a:hover{color:var(--ink)}.links a:hover::after{transform:scaleX(1)}
+.menu-btn{display:none;font:inherit;font-weight:600;background:none;border:1.5px solid var(--ink);color:var(--ink);border-radius:999px;padding:6px 14px;cursor:pointer}
+@media (max-width:720px){
+  .menu-btn{display:inline-flex}
+  .links{position:absolute;left:0;right:0;top:100%;flex-direction:column;gap:0;background:var(--bg);border-bottom:1px solid var(--line);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:8px;transform:translateY(-8px);opacity:0;visibility:hidden;transition:opacity .25s,transform .25s,visibility .25s}
+  .links a{padding-block:12px;font-size:1.05rem;color:var(--ink);border-bottom:1px solid var(--line)}
+  .links a:last-child{border-bottom:0}
+  .links a::after{display:none}
+  nav.open .links{opacity:1;transform:none;visibility:visible}
+}
+
+/* HERO */
+.hero{padding-block:72px 56px;position:relative}
+.coord{display:flex;align-items:center;gap:10px}
+.ping{width:10px;height:10px;border-radius:50%;background:var(--accent);position:relative;flex:none}
+.ping::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--accent);animation:ping 2s ease-out infinite}
+@keyframes ping{to{transform:scale(3.2);opacity:0}}
+.name{font-size:clamp(3.2rem,12vw,9.5rem);font-weight:800;letter-spacing:-.045em;margin-top:22px;line-height:.9}
+.name .row{display:block;overflow:hidden;padding-bottom:.06em}
+.name .ch{display:inline-block;animation:rise .9s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i)*35ms)}
+.name .row:last-child{color:var(--accent)}
+@keyframes rise{from{transform:translateY(105%)}}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;margin-top:40px;align-items:end}
+.hero-grid>*{min-width:0}
+.lead{font-size:clamp(1.1rem,2vw,1.3rem);max-width:34ch;animation:fade 1s .5s both}
+.lead strong{font-weight:600}
+@keyframes fade{from{opacity:0;transform:translateY(12px)}}
+.ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px;animation:fade 1s .7s both}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:13px 22px;border-radius:999px;font-weight:600;text-decoration:none;border:1.5px solid var(--ink);transition:transform .25s,background .25s,color .25s}
+.btn.primary{background:var(--ink);color:var(--bg)}
+.btn:hover{transform:translateY(-2px)}
+.btn.primary:hover{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn .arr{transition:transform .25s}.btn:hover .arr{transform:translateX(4px)}
+.term{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;animation:fade 1s .9s both;box-shadow:0 20px 40px -24px rgba(20,20,60,.25)}
+.term-bar{display:flex;gap:6px;padding:10px 14px;border-bottom:1px solid var(--line)}
+.term-bar i{width:10px;height:10px;border-radius:50%;background:var(--line)}
+.term-bar span{margin-left:auto;font-family:var(--mono);font-size:.72rem;color:var(--muted)}
+.term pre{margin:0;padding:18px;font-family:var(--mono);font-size:.88rem;line-height:1.8;white-space:pre-wrap;word-break:break-word;min-height:9em}
+.k{color:var(--accent)}.c{color:var(--muted)}.s{color:var(--ok)}
+.caret{display:inline-block;width:.55em;height:1.1em;background:var(--accent);vertical-align:-3px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+@media (max-width:820px){.hero-grid{grid-template-columns:1fr}}
+
+/* MARQUEE */
+.marquee{border-block:1px solid var(--line);overflow:hidden;padding-block:16px;background:var(--surface)}
+.track{display:flex;gap:44px;width:max-content;animation:slide 38s linear infinite;font-family:var(--display);font-weight:700;font-size:1.4rem}
+.track span{display:flex;align-items:center;gap:44px;white-space:nowrap}
+.track span::after{content:"✦";color:var(--accent);font-size:.8rem}
+.marquee:hover .track{animation-play-state:paused}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* SECTIONS */
+section{padding-block:96px}
+.head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:44px}
+.head p{max-width:42ch;color:var(--muted)}
+.head>div{display:grid;gap:14px}
+
+/* PROJECTS */
+.projects{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.proj{--mx:50%;--my:50%;position:relative;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;transition:transform .35s cubic-bezier(.2,.8,.2,1),border-color .35s}
+.proj::before{content:"";position:absolute;inset:0;background:radial-gradient(420px circle at var(--mx) var(--my),var(--accent-soft),transparent 60%);opacity:0;transition:opacity .35s;pointer-events:none}
+.proj:hover{transform:translateY(-6px);border-color:var(--accent)}
+.proj:hover::before{opacity:1}
+.preview{height:220px;position:relative;border-bottom:1px solid var(--line);overflow:hidden}
+.pbody{padding:24px;display:grid;gap:12px;position:relative;flex:1;align-content:start}
+.meta{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.chip{font-family:var(--mono);font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+.chip.live{color:var(--ok);border-color:currentColor}
+.chip.live::before{content:"● "}
+.proj p{color:var(--muted)}
+.tags{display:flex;flex-wrap:wrap;gap:8px 14px;font-family:var(--mono);font-size:.76rem;color:var(--ink)}
+.tags span::before{content:"#";color:var(--accent)}
+.proj-link{font-weight:600;text-decoration:none;color:var(--accent);margin-top:4px;width:fit-content}
+.proj-link:hover{text-decoration:underline}
+.proj.wide{grid-column:1/-1;display:grid;grid-template-columns:1.05fr 1fr}
+.proj.wide .preview{height:auto;min-height:280px;border-bottom:0;border-right:1px solid var(--line)}
+@media (max-width:760px){.projects{grid-template-columns:1fr}.proj.wide{grid-template-columns:1fr}.proj.wide .preview{min-height:220px;border-right:0;border-bottom:1px solid var(--line)}}
+/* preview: farol da Faro Digital */
+.pv-light{background:#07051a}
+.pv-light .beam{position:absolute;left:50%;top:38%;width:0;height:0;transform-origin:0 0;animation:sweep 6s ease-in-out infinite alternate}
+.pv-light .beam::before{content:"";position:absolute;left:0;top:-70px;width:520px;height:140px;background:linear-gradient(90deg,rgba(64,224,200,.55),rgba(124,77,255,.15) 55%,transparent);clip-path:polygon(0 50%,100% 0,100% 100%)}
+@keyframes sweep{from{transform:rotate(-200deg)}to{transform:rotate(20deg)}}
+.pv-light .tower{position:absolute;left:calc(50% - 14px);top:calc(38% - 6px);width:28px;bottom:0;background:linear-gradient(#7c4dff,#4a2fb0);clip-path:polygon(25% 0,75% 0,100% 100%,0 100%)}
+.pv-light .tower i{position:absolute;left:50%;top:0;width:14px;height:14px;margin-left:-7px;border-radius:50%;background:#40e0c8;box-shadow:0 0 22px 6px rgba(64,224,200,.6)}
+.pv-light .tag-line{position:absolute;left:20px;right:20px;top:18px;font-family:var(--display);font-weight:700;color:#e9e6ff;font-size:.95rem;letter-spacing:-.01em}
+
+/* preview: faro radar */
+.pv-radar{background:#11122a;display:grid;place-items:center}
+.radar{width:170px;height:170px;border-radius:50%;position:relative;border:1px solid #3a3d77;background:repeating-radial-gradient(circle,transparent 0 27px,#2a2c5c 28px 29px)}
+.radar::before{content:"";position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,rgba(139,139,255,.55),transparent 25%);animation:spin 3.5s linear infinite}
+.radar b{position:absolute;width:8px;height:8px;border-radius:50%;background:#40e0b0;box-shadow:0 0 12px #40e0b0;animation:blip 3.5s infinite}
+.radar .me{width:12px;height:12px;left:calc(50% - 6px);top:calc(50% - 6px);background:#fff;box-shadow:0 0 0 4px rgba(255,255,255,.2);animation:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes blip{0%,100%{opacity:.35}50%{opacity:1}}
+/* preview: monolith */
+.pv-mono{background:#151515;display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:22px}
+.pv-mono div{background:#2a2a2a;border-radius:4px;position:relative;transition:transform .4s,background .4s}
+.pv-mono div::after{content:"";position:absolute;left:8px;right:30%;bottom:8px;height:4px;background:#555;border-radius:2px}
+.pv-mono div:nth-child(1){grid-column:span 2;grid-row:span 2;background:#e6e6e6}
+.pv-mono div:nth-child(1)::after{content:"MONOLITH";background:none;color:#151515;font-family:var(--display);font-weight:800;font-size:.85rem;height:auto;letter-spacing:.1em}
+.proj:hover .pv-mono div:nth-child(n+2){transform:translateY(-4px);background:#3a3a3a}
+.proj:hover .pv-mono div:nth-child(3){transition-delay:.06s}.proj:hover .pv-mono div:nth-child(4){transition-delay:.12s}
+.proj:hover .pv-mono div:nth-child(5){transition-delay:.18s}.proj:hover .pv-mono div:nth-child(6){transition-delay:.24s}
+@media (hover:none){.pv-mono div:nth-child(n+2){animation:float 2.6s ease-in-out infinite}
+  .pv-mono div:nth-child(3){animation-delay:.2s}.pv-mono div:nth-child(4){animation-delay:.4s}.pv-mono div:nth-child(5){animation-delay:.6s}.pv-mono div:nth-child(6){animation-delay:.8s}}
+@keyframes float{50%{transform:translateY(-4px);background:#3a3a3a}}
+
+/* first steps */
+.first{margin-top:28px;border:1px dashed var(--line);border-radius:var(--r);padding:22px 24px;display:grid;grid-template-columns:auto 1fr;gap:12px 32px}
+.first ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.first li{min-width:0}
+.first li b{display:block;font-weight:600}
+.first li small{color:var(--muted);font-size:.85rem}
+@media (max-width:820px){.first{grid-template-columns:1fr}.first ul{grid-template-columns:1fr}}
+
+/* SKILLS */
+.skills{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.sk{border-top:2px solid var(--ink);padding-top:18px;display:grid;gap:14px;align-content:start}
+.sk ul{list-style:none;margin:0;padding:0;display:grid;gap:9px}
+.sk li{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line);padding-bottom:9px}
+.sk li em{font-style:normal;font-family:var(--mono);font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;align-self:center}
+@media (max-width:820px){.skills{grid-template-columns:1fr}}
+
+/* JOURNEY */
+.route{position:relative;display:grid;gap:44px;padding-left:44px;max-width:780px}
+.route::before{content:"";position:absolute;left:11px;top:6px;bottom:6px;width:2px;background:repeating-linear-gradient(var(--line) 0 6px,transparent 6px 12px)}
+.route .fill{position:absolute;left:11px;top:6px;width:2px;height:calc(100% - 12px);background:var(--accent);transform-origin:top}
+.stop{position:relative;display:grid;gap:8px}
+.stop::before{content:"";position:absolute;left:-40px;top:6px;width:16px;height:16px;border-radius:50%;background:var(--bg);border:3px solid var(--accent)}
+.stop.now::before{background:var(--accent);box-shadow:0 0 0 6px var(--accent-soft)}
+.stop p{color:var(--muted);max-width:62ch}
+
+/* ABOUT strip */
+.about{display:grid;grid-template-columns:.9fr 1.1fr;gap:48px;align-items:start}
+.about>*{min-width:0}
+.about .big{font-family:var(--display);font-size:clamp(1.5rem,3vw,2.2rem);font-weight:700;line-height:1.2;letter-spacing:-.015em;text-wrap:balance}
+.about .big mark{background:none;color:var(--accent)}
+.facts{display:grid;grid-template-columns:repeat(2,1fr);gap:20px 28px}
+.facts div{border-top:1px solid var(--line);padding-top:12px;display:grid;gap:4px}
+.facts b{font-weight:600}
+@media (max-width:820px){.about{grid-template-columns:1fr}}
+
+/* CURRÍCULO */
+.cv{display:grid;grid-template-columns:auto 1fr;gap:clamp(28px,5vw,64px);align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:28px;padding:clamp(24px,5vw,56px)}
+.cv-text{display:grid;gap:14px;min-width:0}
+.cv-text p{color:var(--muted);max-width:46ch}
+.cv-doc{width:170px;aspect-ratio:210/297;max-width:100%;background:#fff;border-radius:6px;box-shadow:0 24px 40px -20px rgba(20,20,60,.35),0 0 0 1px var(--line);padding:18px 16px;display:flex;flex-direction:column;gap:7px;transform:rotate(-4deg);transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+.cv:hover .cv-doc{transform:rotate(0) translateY(-6px)}
+.cv-doc b{font-family:var(--display);font-size:.62rem;color:#12141c;letter-spacing:.04em;margin-bottom:4px}
+.cv-doc i{height:4px;border-radius:2px;background:#d9dce6}
+.cv-doc i.s{width:62%}
+.cv-doc em{height:5px;width:40%;border-radius:2px;background:#3b3bf5;margin-top:6px}
+.btn.ghost{border-color:var(--line)}
+@media (max-width:640px){.cv{grid-template-columns:1fr}.cv-doc{width:130px}}
+
+/* CONTACT */
+.contact{background:var(--ink);color:var(--bg);border-radius:28px;padding:clamp(28px,6vw,72px);display:grid;gap:36px;position:relative;overflow:hidden}
+.contact .label{color:var(--bg);opacity:.7}
+@supports (color:color-mix(in srgb,red,blue)){.contact .label{opacity:1;color:color-mix(in srgb,var(--bg) 60%,var(--ink))}}
+.contact h2{font-size:clamp(2.4rem,8vw,6rem)}
+.contact h2 span{color:var(--accent)}
+.clist{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.citem{border:1px solid rgba(128,128,140,.35);border-color:color-mix(in srgb,var(--bg) 25%,var(--ink));border-radius:var(--r);padding:16px 18px;display:grid;gap:6px;text-decoration:none;min-width:0;transition:background .25s,transform .25s}
+.citem:hover{background:rgba(128,128,140,.12);background:color-mix(in srgb,var(--bg) 8%,var(--ink));transform:translateY(-3px)}
+.citem .v{font-weight:600;word-break:break-all}
+.copy{font:inherit;font-size:.78rem;font-family:var(--mono);background:none;border:1px solid currentColor;color:inherit;border-radius:999px;padding:4px 10px;cursor:pointer;width:fit-content;opacity:.8}
+.copy:hover{opacity:1}
+@media (max-width:900px){.clist{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.clist{grid-template-columns:1fr}}
+footer{padding-block:36px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:.85rem}
+
+/* scroll reveal (só transform: tudo continua legível sem rolagem) */
+@supports (animation-timeline:view()){
+  .rv{animation:rv linear both;animation-timeline:view();animation-range:entry 0% entry 55%}
+  @keyframes rv{from{transform:translateY(40px) scale(.98)}}
+  .route .fill{animation:grow linear both;animation-timeline:view();animation-range:entry 20% cover 70%}
+  @keyframes grow{from{transform:scaleY(0)}}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
+
+
+</head>
+<body>
+<nav>
+  <div class="wrap">
+    <a class="logo" href="#topo">vinicius<span>.</span>dev</a>
+    <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="navLinks">Menu</button>
+    <div class="links" id="navLinks">
+      <a href="#projetos">Projetos</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#stack">Stack</a>
+      <a href="#jornada">Jornada</a>
+      <a href="#curriculo">Currículo</a>
+      <a href="#contato">Contato</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero wrap" id="topo">
+  <div class="coord label"><span class="ping"></span>23°33′S 46°38′W · São Paulo, SP · disponível para estágio</div>
+  <h1 class="name" aria-label="Vinicius Pinheiro">
+    <span class="row" data-split>Vinicius</span>
+    <span class="row" data-split>Pinheiro</span>
+  </h1>
+  <div class="hero-grid">
+    <div>
+      <p class="lead">Desenvolvedor web em formação. Estudo <strong>Análise e Desenvolvimento de Sistemas</strong> e já crio sites, apps e automações para comércios de verdade pela <strong>Faro Digital</strong>.</p>
+      <div class="ctas">
+        <a class="btn primary" href="#projetos">Ver projetos <span class="arr">→</span></a>
+        <a class="btn" href="#contato">Falar comigo</a>
+        <a class="btn ghost" href="/Curriculo_Vinicius_Pinheiro.pdf" download>Baixar currículo <span class="arr">↓</span></a>
+      </div>
+    </div>
+    <div class="term" aria-label="Trecho de código animado">
+      <div class="term-bar"><i></i><i></i><i></i><span>vinicius.js</span></div>
+      <pre id="code"><span class="k">const</span> projeto = ideias.<span class="k">map</span>(criar);
+<span class="c">// aprendendo sempre</span>
+<span class="k">await</span> deploy(<span class="s">"cloudflare"</span>);<span class="caret"></span></pre>
+    </div>
+  </div>
+</header>
+
+<div class="marquee" aria-hidden="true">
+  <div class="track">
+    <span>JavaScript</span><span>HTML &amp; CSS</span><span>SQL · MySQL</span><span>Google Places API</span><span>Kotlin</span><span>Java</span><span>Git · GitHub</span>
+    <span>JavaScript</span><span>HTML &amp; CSS</span><span>SQL · MySQL</span><span>Google Places API</span><span>Kotlin</span><span>Java</span><span>Git · GitHub</span>
+  </div>
+</div>
+
+<section id="projetos">
+  <div class="wrap">
+    <div class="head rv">
+      <div><span class="label">Projetos</span><h2>Feito para gente real</h2></div>
+      <p>Sites e ferramentas que construí para comércios locais, para a Faro Digital e para a faculdade.</p>
+    </div>
+
+    <div class="projects">
+      <article class="proj wide rv">
+        <div class="preview pv-light" aria-hidden="true">
+          <div class="beam"></div>
+          <div class="tower"><i></i></div>
+          <span class="tag-line">A luz que guia clientes até o seu negócio.</span>
+        </div>
+        <div class="pbody">
+          <div class="meta"><span class="label">Site institucional</span><span class="chip live">No ar</span></div>
+          <h3>Site da Faro Digital</h3>
+          <p>Site da Faro Digital, empresa de presença digital para comércios locais de São Paulo. Apresenta os serviços (placas de avaliação NFC, Google Meu Negócio, BioSites, sites e automações), explica o uso da placa em vídeo e leva o cliente direto para o WhatsApp.</p>
+          <div class="tags"><span>html</span><span>css</span><span>javascript</span><span>cloudflare-workers</span><span>responsivo</span></div>
+          <a class="proj-link" href="https://site.farodigital.workers.dev/" target="_blank" rel="noopener">Ver site no ar ↗</a>
+        </div>
+      </article>
+      <article class="proj rv">
+        <div class="preview pv-radar" aria-hidden="true">
+          <div class="radar"><b class="me"></b><b style="left:28%;top:24%"></b><b style="left:70%;top:34%;animation-delay:.9s"></b><b style="left:62%;top:72%;animation-delay:1.8s"></b><b style="left:22%;top:62%;animation-delay:2.6s"></b></div>
+        </div>
+        <div class="pbody">
+          <div class="meta"><span class="label">App web</span><span class="chip">Em desenvolvimento</span></div>
+          <h3>Faro: app de gestão de vendas</h3>
+          <p>App web de gestão de vendas usado na Faro Digital. Controla o financeiro dos atendimentos, mostra comércios ao redor pelo GPS no Modo Rua e gera BioSites com dados do Google.</p>
+          <div class="tags"><span>javascript</span><span>google-places-api</span><span>geolocalização</span><span>netlify</span></div>
+        </div>
+      </article>
+      <article class="proj rv">
+        <div class="preview pv-mono" aria-hidden="true"><div></div><div></div><div></div><div></div><div></div><div></div></div>
+        <div class="pbody">
+          <div class="meta"><span class="label">Faculdade · em grupo</span><span class="chip live">No ar</span></div>
+          <h3>Monolith: loja de roupas</h3>
+          <p>E-commerce do Projeto Integrador, com API ligada a um banco MySQL hospedado na nuvem e deploy contínuo pelo GitHub.</p>
+          <div class="tags"><span>mysql</span><span>api</span><span>aiven</span><span>netlify</span></div>
+          <a class="proj-link" href="https://temquedobrarr.netlify.app" target="_blank" rel="noopener">Ver site no ar ↗</a>
+        </div>
+      </article>
+    </div>
+
+    <div class="first rv">
+      <span class="label">Primeiros passos</span>
+      <ul>
+        <li><b>Lista de Receitas</b><small>Construct 3 · arrays, armazenamento e telas</small></li>
+        <li><b>Reserva de Cabines</b><small>Portugol · validações e regras de negócio</small></li>
+        <li><b>Frase do Dia</b><small>Construct 3 · aleatoriedade e eventos</small></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="sobre" style="padding-top:0">
+  <div class="wrap about rv">
+    <div style="display:grid;gap:14px"><span class="label">Sobre</span>
+      <p class="big">Aprendo programando para clientes. Cada site entregue me ensina algo que a sala de aula <mark>ainda não ensinou</mark>.</p>
+    </div>
+    <div style="display:grid;gap:24px">
+      <p style="color:var(--muted);max-width:62ch">Estudo ADS no Centro Universitário Católico Ítalo Brasileiro e, ao mesmo tempo, trabalho com a Faro Digital, desenvolvendo sites, landing pages, BioSites e perfis no Google para comércios locais. Antes disso, trabalhei no administrativo, onde aprendi a ter organização, atenção aos detalhes e a falar com cliente e fornecedor. Procuro uma vaga de estágio ou júnior para crescer perto de gente mais experiente.</p>
+      <div class="facts">
+        <div><span class="label">Formação</span><b>ADS · conclusão em 2028</b></div>
+        <div><span class="label">Busco</span><b>Estágio ou júnior em desenvolvimento</b></div>
+        <div><span class="label">Idiomas</span><b>Português nativo · Inglês B1 · Espanhol básico</b></div>
+        <div><span class="label">Forte em</span><b>Comunicação e pensamento lógico</b></div>
+      </div>
+      <div style="display:grid;gap:10px"><span class="label">Competências</span>
+        <div class="tags" style="font-size:.8rem"><span>comunicação</span><span>proatividade</span><span>resolução-de-problemas</span><span>facilidade-com-tecnologia</span><span>organização</span><span>trabalho-em-grupo</span><span>atenção-aos-detalhes</span><span>pensamento-analítico</span><span>adaptabilidade</span><span>disposição-para-aprender</span><span>disposição-para-ouvir</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="stack" style="padding-top:0">
+  <div class="wrap">
+    <div class="head rv"><div><span class="label">Stack</span><h2>O que eu uso</h2></div></div>
+    <div class="skills">
+      <div class="sk rv"><h3>Web</h3><ul>
+        <li>JavaScript <em>intermediário</em></li><li>HTML &amp; CSS <em>intermediário</em></li><li>APIs REST · Google Places <em>prática</em></li><li>Netlify · deploy <em>prática</em></li></ul></div>
+      <div class="sk rv"><h3>Dados</h3><ul>
+        <li>SQL <em>intermediário</em></li><li>MySQL · Workbench <em>prática</em></li><li>Aiven (MySQL na nuvem) <em>prática</em></li><li>Excel · PowerPoint <em>intermediário</em></li></ul></div>
+      <div class="sk rv"><h3>Outros</h3><ul>
+        <li>Git · GitHub <em>prática</em></li><li>Kotlin · Android Studio <em>básico</em></li><li>C# · Unity <em>básico</em></li><li>Java <em>básico</em></li><li>Construct 3 · VisualG <em>prática</em></li><li>VS Code · Visual Studio · Office <em>uso diário</em></li><li>IA: ChatGPT · Claude · Gemini <em>uso diário</em></li></ul></div>
+    </div>
+    <div class="first rv" style="margin-top:36px">
+      <span class="label">Áreas estudadas</span>
+      <div class="tags"><span>lógica-de-programação</span><span>orientação-a-objetos</span><span>estruturas-de-dados</span><span>apis</span><span>desenvolvimento-mobile</span><span>jogos-2d-3d</span><span>ar-vr</span><span>e-commerce-em-java</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="jornada" style="padding-top:0">
+  <div class="wrap">
+    <div class="head rv"><div><span class="label">Jornada</span><h2>A rota até aqui</h2></div></div>
+    <div class="route">
+      <span class="fill" aria-hidden="true"></span>
+      <div class="stop now rv"><span class="label">Em andamento · conclusão prevista em jan 2028</span><h3>Análise e Desenvolvimento de Sistemas</h3>
+        <p>Centro Universitário Católico Ítalo Brasileiro. Cursos complementares: SQL (FGV), Desenvolvimento Mobile Jr. (Brasil Mobile School) e Inglês (Fluency Academy).</p></div>
+      <div class="stop rv"><span class="label">Mar 2024 — Out 2024</span><h3>Auxiliar Administrativo Jr. · Temakeira e Cia.</h3>
+        <p>Planilhas, lançamentos bancários, conferência de notas fiscais, negociação com fornecedores, atendimento a clientes e apoio à folha de cerca de 80 funcionários.</p></div>
+      <div class="stop rv"><span class="label">2024</span><h3>Ensino Médio · E.E. Plínio Negrão</h3></div>
+    </div>
+  </div>
+</section>
+
+<section id="curriculo" style="padding-top:0">
+  <div class="wrap">
+    <div class="cv rv">
+      <div class="cv-doc" aria-hidden="true"><b>VINICIUS PINHEIRO</b><i></i><i></i><i class="s"></i><em></em><i></i><i class="s"></i><em></em><i></i><i></i><i class="s"></i></div>
+      <div class="cv-text">
+        <span class="label">Currículo</span>
+        <h2>Tudo em uma página</h2>
+        <p>Formação, experiência, habilidades técnicas, cursos e idiomas num PDF pronto para enviar ou imprimir.</p>
+        <div class="ctas" style="animation:none;margin-top:6px">
+          <a class="btn primary" href="/Curriculo_Vinicius_Pinheiro.pdf" download>Baixar PDF <span class="arr">↓</span></a>
+          <a class="btn" href="/Curriculo_Vinicius_Pinheiro.pdf" target="_blank" rel="noopener">Abrir em nova aba ↗</a>
+        </div>
+        <span class="label">PDF · 1 página · atualizado em out/2026</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contato" style="padding-top:0">
+  <div class="wrap">
+    <div class="contact rv">
+      <span class="label">Contato</span>
+      <h2>Vamos construir <span>algo?</span></h2>
+      <div class="clist">
+        <a class="citem" href="https://linkedin.com/in/vinicius-pinheiro-a144252a4" target="_blank" rel="noopener"><span class="label">LinkedIn</span><span class="v">vinicius-pinheiro ↗</span></a>
+        <a class="citem" href="https://github.com/viniciuspnasc" target="_blank" rel="noopener"><span class="label">GitHub</span><span class="v">viniciuspnasc ↗</span></a>
+        <a class="citem" href="https://wa.me/5511977554630" target="_blank" rel="noopener"><span class="label">WhatsApp</span><span class="v">(11) 97755-4630 ↗</span></a>
+        <div class="citem"><span class="label">E-mail</span><span class="v" id="mail">viniciusprivado190405@gmail.com</span><button class="copy" id="copyBtn" type="button">Copiar e-mail</button></div>
+      </div>
+    </div>
+    <footer><span>© 2026 Vinicius Pinheiro</span><span class="mono">feito à mão com HTML, CSS e JS</span></footer>
+  </div>
+</section>
+
+<script>
+// divide o nome em letras para a animação de entrada
+document.querySelectorAll('[data-split]').forEach((row, r) => {
+  const t = row.textContent; row.textContent = '';
+  [...t].forEach((c, i) => { const s = document.createElement('span'); s.className = 'ch'; s.style.setProperty('--i', i + r * 6); s.textContent = c; s.setAttribute('aria-hidden','true'); row.appendChild(s); });
+});
+
+// spotlight que segue o mouse nos cards
+document.querySelectorAll('.proj').forEach(el => el.addEventListener('pointermove', e => {
+  const b = el.getBoundingClientRect();
+  el.style.setProperty('--mx', (e.clientX - b.left) + 'px');
+  el.style.setProperty('--my', (e.clientY - b.top) + 'px');
+}));
+
+// terminal digitando em loop (começa já completo)
+(() => {
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const pre = document.getElementById('code');
+  const scripts = [
+    [['k','const'],['',' projeto = ideias.'],['k','map'],['','(criar);\n'],['c','// aprendendo sempre\n'],['k','await'],['',' deploy('],['s','"cloudflare"'],['',');']],
+    [['k','const'],['',' cliente = '],['k','await'],['',' places.'],['k','buscar'],['','('],['s','"padaria"'],['',');\n'],['c','// Modo Rua: comércios por perto\n'],['','faro.'],['k','prospectar'],['','(cliente);']],
+    [['k','if'],['',' (!loja.site) {\n  '],['k','return'],['',' criarSite(loja);\n}\n'],['c','// todo comércio merece estar online']]
+  ];
+  const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;');
+  let n = 0;
+  const render = (parts, count) => {
+    let out = '', left = count;
+    for (const [cls, txt] of parts) {
+      if (left <= 0) break;
+      const piece = esc(txt.slice(0, left)); left -= txt.length;
+      out += cls ? `<span class="${cls}">${piece}</span>` : piece;
+    }
+    pre.innerHTML = out + '<span class="caret"></span>';
+  };
+  const total = p => p.reduce((a, [, t]) => a + t.length, 0);
+  const run = () => {
+    n = (n + 1) % scripts.length;
+    const p = scripts[n], len = total(p); let i = 0;
+    const type = () => { render(p, ++i); if (i < len) setTimeout(type, 28 + Math.random()*40); else setTimeout(run, 3200); };
+    type();
+  };
+  setTimeout(run, 3500);
+})();
+
+// menu no celular
+(() => {
+  const nav = document.querySelector('nav'), btn = document.getElementById('menuBtn');
+  const set = open => { nav.classList.toggle('open', open); btn.setAttribute('aria-expanded', open); btn.textContent = open ? 'Fechar' : 'Menu'; };
+  btn.addEventListener('click', () => set(!nav.classList.contains('open')));
+  document.querySelectorAll('#navLinks a').forEach(a => a.addEventListener('click', () => set(false)));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') set(false); });
+})();
+
+// copiar e-mail
+document.getElementById('copyBtn').addEventListener('click', e => {
+  const t = document.getElementById('mail').textContent, b = e.currentTarget;
+  const done = () => { b.textContent = 'Copiado'; setTimeout(() => b.textContent = 'Copiar e-mail', 1800); };
+  try {
+    navigator.clipboard.writeText(t).then(done).catch(() => sel());
+  } catch { sel(); }
+  function sel(){ const r = document.createRange(); r.selectNodeContents(document.getElementById('mail')); const s = getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent = 'Selecionado'; }
+});
+</script>
+
+</body>
+</html>
